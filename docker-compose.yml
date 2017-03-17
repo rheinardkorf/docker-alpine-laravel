@@ -1,0 +1,65 @@
+version: '2'
+
+services:
+    # The NGINX web/reverse-proxy server.
+    nginx:
+      depends_on:
+        - app
+      image: nginx:1.10.3-alpine
+      restart: always
+      ports:
+        - 80:80
+        - 443:443
+      volumes_from:
+        - app
+      volumes:
+        - ./config/site.conf:/etc/nginx/conf.d/default.conf
+        # Remove the comment below to enable nginx logs.
+        #- ./logs/nginx/:/var/log/nginx/
+      networks:
+        - app-network
+    # The Laravel app.
+    app:
+      depends_on:
+       - db
+      # Extend php:fpm-alpine to add PDO drivers
+      build:
+        context: ./docker/app
+      restart: always
+      volumes:
+        - ./src:/var/www/html
+      links:
+        - db:dbhost
+      networks:
+        - app-network
+    # The database server.
+    db:
+      image: mysql:5.7
+      restart: always
+      # Get environment variables from a file. Note: Rename mysql.env.example to add your config.
+      env_file:
+        - ./config/mysql.env
+      # Change this if you want to use a location on the host, or it will use a Docker volume.
+      volumes:
+        - db_data:/var/lib/mysql
+      networks:
+        - app-network
+    # (Optional) A PHPMyAdmin web interface for the database.
+    phpmyadmin:
+      depends_on:
+        - db
+      image: phpmyadmin/phpmyadmin
+      restart: always
+      ports:
+        - 8080:80
+      env_file:
+        - ./config/mysql.env
+      environment:
+        PMA_HOST: db
+      networks:
+        - app-network
+networks:
+    app-network:
+      driver: bridge
+volumes:
+  db_data:

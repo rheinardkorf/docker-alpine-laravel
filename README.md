@@ -6,9 +6,9 @@ Basic Laravel setup with official Alpine Nginx docker image and official Alpine 
 ### Docker
 
 To use this project you first need Docker installed. It would do you well to learn more about Docker, but these steps will get
-you going fast. The first step of course is to get Docker. You can get Docker from here:  
+you going fast. The first step of course is to get Docker. You can get Docker from here:
 
-* MacOS: https://www.docker.com/docker-mac  
+* MacOS: https://www.docker.com/docker-mac
 * Windows: https://www.docker.com/docker-windows
 * Other: https://www.docker.com/get-docker
 
@@ -17,7 +17,7 @@ and welcome to the awesome world of Docker.
 
 ### Setting up your app
 
-Setting up a Laravel app is pretty straight forward. Go to any of your project folders and then run the following (replacing my-app with whatever you wish):  
+Setting up a Laravel app is pretty straight forward. Go to any of your project folders and then run the following (replacing my-app with whatever you wish):
 
 ```
 git clone https://github.com/rheinardkorf/docker-alpine-laravel.git my-app
@@ -31,7 +31,7 @@ mv config/mysql.env.example config/mysql.env
 mv src/.env.example srv/.env
 ```
 
-Newxt you need to let Docker do its magic.
+Next you need to let Docker do its magic.
 
 ```
 docker-compose up -d
@@ -41,14 +41,14 @@ Note: The first time you run `docker-compose` it might take a while to download 
 
 This will spin up a few Docker containers:
 
-* nginx - Which acts as a proxy for your site and the PHP FPM server.  
+* nginx - Which acts as a proxy for your site and the PHP FPM server.
 * app - Your Laravel App. This is a PHP FPM image with PDO MySQL drivers installed.
-* db - MySQL for serving your Laravel app a database.  
-* phpmyadmin - A web interface for your database.  
+* db - MySQL for serving your Laravel app a database.
+* phpmyadmin - A web interface for your database.
 
 ## URLs
 
-The following URLs will now be available for your project:  
+The following URLs will now be available for your project:
 
 * http://localhost/ -- Your starter Laravel app.
 * http://localhost:8080/ -- The PHPMyAdmin interface for your database (username: root, password: root)
@@ -57,11 +57,11 @@ You are now ready to build out your Laravel app.
 
 ## Project Folder Structure
 
-Inside your primary `my-site` project folder you will see the following:  
+Inside your primary `my-site` project folder you will see the following:
 
-* docker-compose.yml -- The Docker configuration for your project.  
-* config/site.conf -- The nginx configuration for your site.  
-* config/mysql.env -- Configuration for your database. 
+* docker-compose.yml -- The Docker configuration for your project.
+* config/site.conf -- The nginx configuration for your site.
+* config/mysql.env -- Configuration for your database.
 * src/ -- The Laravel app and its whole application tree.
 * logs/ -- If you poked in the docker-compose.yml file and enabled nginx logs, you will have this folder.
 * docker/app -- A simple Dockerfile to add the PDO drivers to PHP-FPM.
@@ -81,4 +81,3 @@ The `src` folder is a standard Laravel app. Replace the contents with your exist
 *NOTE*: You will need to change your .env file to use `dbhost` as your database host to use the MySQL container. Using localhost will fail.
 
 Enjoy.
-

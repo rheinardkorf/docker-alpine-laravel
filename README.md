@@ -31,6 +31,16 @@ mv config/mysql.env.example config/mysql.env
 mv src/.env.example srv/.env
 ```
 
+I assume that if you are working with Laravel that you know about "composer". If you don't have "composer", here is a good place to start: https://getcomposer.org/doc/
+
+Go to your **src** folder and execure the following. (The below assumes that you have "composer" setup globally)
+
+```
+cd src
+composer install
+cd ..
+```
+
 Next you need to let Docker do its magic.
 
 ```
@@ -114,3 +124,8 @@ The `src` folder is a standard Laravel app. Replace the contents with your exist
 Replace the Laravel `src` app with Lumen! If you're only building APIs, I recommend this route. To be a bit sneaky, you might want to cheat a little and use Laravel to build your models and migrations and then bring them across to Lumen.
 
 Enjoy.
+
+## Troubleshooting
+If you're developing a Laravel application I am going to assume that you know how to install and use "composer". The first thing you need to do to initialise your Laraval app will be to run `composer install` inside the **src** folder.
+
+If you are new to composer, this should help you: https://getcomposer.org/doc

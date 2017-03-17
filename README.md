@@ -76,6 +76,34 @@ Make sure you are in your project folder (the one with docker-compose.yml) and r
 
 Simple.
 
+## Using Artisan
+
+If you love Laravel Artisan as much as I do, you might be wondering how to use it. Here are two options.
+
+### Option 1:
+
+Run it from your host. But first you will need your app's container name. Run the following and find your container's name in the far right column.
+
+```
+docker ps
+```
+
+It should be something like "app_app_<number>".
+
+Now you can run Artisan using the following:
+
+```
+docker exec -ti app_app_1 php artisan
+```
+I recommend creating an alias if you plan to use it a lot.
+
+### Option 2:
+Drop into your container's shell (its Kornshell, so don't expect all the wow of zsh, fish or even basic ol' bash). To do this run the following:
+
+```
+docker exec -ti app_app_1 /bin/sh
+```
+
 ## TIP:
 The `src` folder is a standard Laravel app. Replace the contents with your existing Laravel app to dockerize it.
 *NOTE*: You will need to change your .env file to use `dbhost` as your database host to use the MySQL container. Using localhost will fail.

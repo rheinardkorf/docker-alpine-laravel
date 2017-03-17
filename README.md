@@ -98,12 +98,12 @@ Run it from your host. But first you will need your app's container name. Run th
 docker ps
 ```
 
-It should be something like "app_app_<number>".
+It should be something like "<foldername>_app_<number>".
 
 Now you can run Artisan using the following:
 
 ```
-docker exec -ti app_app_1 php artisan
+docker exec -ti myapp_app_1 php artisan
 ```
 I recommend creating an alias if you plan to use it a lot.
 
@@ -111,7 +111,7 @@ I recommend creating an alias if you plan to use it a lot.
 Drop into your container's shell (its Kornshell, so don't expect all the wow of zsh, fish or even basic ol' bash). To do this run the following:
 
 ```
-docker exec -ti app_app_1 /bin/sh
+docker exec -ti myapp_app_1 /bin/sh
 ```
 
 ## TIPS:

@@ -104,8 +104,13 @@ Drop into your container's shell (its Kornshell, so don't expect all the wow of 
 docker exec -ti app_app_1 /bin/sh
 ```
 
-## TIP:
+## TIPS:
+
+### Your existing Laravel app
 The `src` folder is a standard Laravel app. Replace the contents with your existing Laravel app to dockerize it.
 *NOTE*: You will need to change your .env file to use `dbhost` as your database host to use the MySQL container. Using localhost will fail.
+
+### Go lightweight with Lumen!
+Replace the Laravel `src` app with Lumen! If you're only building APIs, I recommend this route. To be a bit sneaky, you might want to cheat a little and use Laravel to build your models and migrations and then bring them across to Lumen.
 
 Enjoy.
